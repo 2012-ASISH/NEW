@@ -1,0 +1,52 @@
+<html>
+<head>
+<style>
+input:focus{
+border:3px solid red;
+}
+input[type='checkbox']:checked{
+box-shadow:0 0 0 3px blue;
+}
+input[type='radio']:checked{
+box-shadow:0 0 0 3px blue;
+}
+input:required{
+background:lime;
+}
+input:optional{
+background:blue;
+}
+input[type='email']:valid{
+background:tan;
+}
+input[type='email']:invalid{
+background:red;
+}
+
+h1{
+color :blue;
+}
+</style>
+</head>
+<body>
+<h1>ASISH SAHOO</h1>
+<form>
+<fieldset>
+<legend>Personal Details</legend>
+<label>NAME</label><br/><input type="text" placeholder="Your name full" optional/>
+<br/>
+<label>AGE</label><br/><input type="number" placeholder="Your age" required/>
+<br/>
+<label>PASSWORD</label><br/><input type="password" placeholder="strong password" required/>
+<br/>
+<label>EMAIL-ID</label><br/><input type="email" placeholder="pls provide email id" required />
+<br/>
+<label>GENDER</label><br/><label>male</label><input type="radio" name="gender"/><label>female</label><input type="radio" name="gender"/>
+<br/>
+<label>HOBBIES</label><br/><label>sports</label><input type="checkbox" name=""/><label>music</label><input type="checkbox" name=""/>
+<br/>
+<label>MESSAGE</label><br/><textarea  cols="40" placeholder="pls provide your view"></textarea>
+</fieldset>
+</form>
+</body>
+</html>

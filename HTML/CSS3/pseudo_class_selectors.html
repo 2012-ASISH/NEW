@@ -1,0 +1,88 @@
+pseudo-classes and pseudo-elements:
+1:first-child(whatever tag you will be using , it must be a child and it will taget the first line of child )
+2:last-child(vice-versa of first child)
+3:nth-child()
+4:nth-last-child()(vice-versa of nth child)
+5:nth-last-of-type()(work same as nth of type from last)
+6:nth-of-type()(dont need to be a child)
+7:only-child(it can target only those tags which the only child of the parent tag)
+8:only-of-type x
+9:first-of-type()
+10:last-of-type
+11:empty(it targets those tags who are empty from inside)
+12:not()
+13:lang()
+14:link
+15:hover
+16:visited [can only be used with anchor tags, once you click on link that particular links color will change]
+17:active [till the time you are pressing on the link it will change color ,when you leave the mouse button then it again comes back to its original form]
+18:target
+>>>>>>>>>>>>>>>>>>>>>>used with forms<<<<<<<<<<<<<<<<<<<<<<<<<
+19:focus
+20:checked
+21:disabled
+22:enabled
+23:required
+24:optional
+25:in-range
+26:out-of-range
+27:read-only
+28:read-write
+29:valid
+30:invalid
+31:default
+32:root
+<html>
+<head>
+<style>
+div{
+width:500px;
+height:500px;
+border:2px solid red;
+overflow-Y:scroll;
+}
+/*p:first-child{
+color:red;
+}*/
+/*p:nth-child(2n){
+color:blue;
+}*/
+/*p:nth-of-type(3){
+color:yellow;
+}*/
+span:only-child{
+color:gold;
+}
+p:first-of-type{
+color:blue;
+}
+/*p:empty{
+border:3px solid tan;
+}*/
+/*p:not(.test){
+color:tan;
+}*/
+p:target{
+background:gold;
+}
+</style>
+</head>
+<body>
+<h1>HELLO RAJA</h1>
+<font size="3" face=arial>hey folks, what up!, hope you are doing good</font>
+<div>
+<p>hahhkajhkfhadhkjhfkafhihfkahfkhakhfkjafkjahfkkfhkjahfkhfkjhfkjfkhfakjabchfnh</p>
+<p class="test">hahhkajhkfhadhkjhfkafhihfkahfkhakhfkjafkjahfkkfhkjahfkhfkjhfkjfkhfakjabchfnh</p>
+<p>hahhkajhkfhadhkjhfkafhihfkahfkhakhfkjafkjahfkkfhkjahfkhfkjhfkjfkhfakjabchfnh</p>
+<p>hahhkajhkfhadhkjhfkafhihfkahfkhakhfkjafkjahfkkfhkjahfkhfkjhfkjfkhfakjabchfnh</p>
+<p>hahhkajhkfhadhkjhfkafhihfkahfkhakhfkjafkjahfkkfhkjahfkhfkjhfkjfkhfakjabchfnh</p>
+<p>hahhkajhkfhadhkjhfkafhihfkahfkhakhfkjafkjahfkkfhkjahfkhfkjhfkjfkhfakjabchfnh</p>
+<p>hahhkajhkfhadhkjhfkafhihfkahfkhakhfkjafkjahfkkfhkjahfkhfkjhfkjfkhfakjabchfnh</p>
+<p>hahhkajhkfhadhkjhfkafhihfkahfkhakhfkjafkjahfkkfhkjahfkhfkjhfkjfkhfakjabchfnh</p>
+</div>
+<p>hello raja<span>how are you doing</span>, wear your mask.</p>
+<p></p>
+<a href="#html">full form of html internal page linking</a> 
+<p id="html">html is hyper text markup language internal page linking</p>
+</body>
+</html>

@@ -1,0 +1,47 @@
+<html>
+<head>
+<title>css_grid</title>
+<style>
+.container{
+background:#eee;
+width:700px;
+margin: 70px 0 0 50px;
+display:grid;
+/*grid-template-columns:350px 200px auto;*/
+grid-template-columns:1fr 1fr 1fr; /*this divides the grid into three equal parts*/
+/*grid-template-columns:50% repeat(2,200px);*/ /*first one will be 50% and rest two will be as specified inside the function repeat*/
+grid-template-rows:150px 150px;
+grid-column-gap:20px;/*this produces gaps between the grids*/
+grid-row-gap:10px;
+}
+.items1{
+background:orangered;
+}
+.items2{
+background:yellowgreen;
+}
+.items3{
+background:slateblue;
+}
+.items4{
+background:hotpink;
+}
+.items5{
+background:royalblue;
+}
+.items6{
+background:goldenrod;
+}
+</style>
+</head>
+<body bgcolor="tan">
+<div class="container">
+<div class="items items1">first</div>
+<div class="items items2">second</div>
+<div class="items items3">third</div>
+<div class="items items4">fourth</div>
+<div class="items items5">fifth</div>
+<div class="items items6">sixth</div>
+</div>
+</body>
+</html>

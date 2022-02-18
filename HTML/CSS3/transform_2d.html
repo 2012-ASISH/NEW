@@ -1,0 +1,51 @@
+values: rotate(angle),translate(x,y),translate(x),translate(y),scale(x,y),scaleX(x),scaleY(y),skew(x-angle,y-angle),skewX(angle),skewY(angle),matrix(n,n,n,n,n,n),none.transform-origin:left top;
+<html>
+<head>
+<title>transform</title>
+<style>
+h1{
+text-decoration-line:underline;
+text-decoration-color:tomato;
+text-decoration-style:wavy;
+column-span:all;
+}
+div{
+background:yellow;
+height:150px;
+width:250px;
+margin:150px 300px;
+transform:rotate(0deg);
+transition:transform 1s;
+}
+div:hover{
+transform:rotate(90deg);
+}
+#first{
+background:red;
+height:80px;
+width:100px;
+margin:150px 300px;
+transform:skew(75deg);
+}
+#sec{
+background:blue;
+height:80px;
+width:100px;
+margin:150px 300px;
+transform:scale(3);
+}
+</style>
+</head>
+<body bgcolor="tan">
+<h1 align="center">ASISH KUMAR SAHOO</h1>
+<div> 
+2d tansform 
+</div>
+<div id="first"> 
+2d tansform 
+</div>
+<div id="sec"> 
+2d tansform 
+</div>
+</body>
+</html>

@@ -1,0 +1,34 @@
+types of selectors : simple selector,combinators selectors,attribute selectors,pseudo-classes & pseudo-elements
+type of simple selectors:
+1>type selector(ex-image{})
+2>class selector(ex-.image{})
+3>id selector(ex-#image{})
+4>universal selector(*{})
+5>descendant selector(.box p{},p span{},div p span{})
+6>direct child slector:(ul>li{},.box>li{},#box>li)(only apllicable for direct child)
+7>adjacent sibling selector:(div+p{})(suppose there is a <div> and after that if there is a <p> tag , in that case we can use sibling.)
+8>general sibling selector:(div~p{})(after <div> how much paragraph tags are ther doesnt matter it will be applicable to all.)
+>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
+attribute selector types:
+1>A[attr](it will target the tag with the provided attribute ex-img[alt]{})
+2>A[attr=val](ex-input[type='password'])
+3>A[attr^=val]x
+4>A[attr|=val]x
+5>A[attr$=val](a[href$='.png'],this means select a anchor tag having an attribute href and inside the href whatever is written should end with .png)
+6>A[attr*=val](choosing all tags having the provided attribute)
+7>A[attr~=val]x
+
+<html>
+<head>
+<style>
+*{
+color:blue;/*this i show universal selectors are used , it covers all the tags .Means whatever u write inside the scope is applicable to every tag*/
+border:2px solid green;
+}
+</style>
+</head>
+<body>
+<h1>HELLO RAJA</h1>
+<font size="3" face=arial>hey folks, what up!, hope you are doing good</font>
+</body>
+</html>

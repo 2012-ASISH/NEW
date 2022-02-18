@@ -1,0 +1,69 @@
+<html>
+<head>
+</head>
+<body>
+<script>
+var name=prompt("What is your name sir ?");
+var pass=prompt("What is the password");
+
+function myfun(){
+
+var a=parseInt(document.getElementById('number').value);
+var b=parseInt(document.getElementById('numbers').value);
+if(pass==="raja"){
+document.getElementById('result').innerHTML=(a*b);
+document.getElementById('results').innerHTML=(name);
+}
+
+else{
+alert("wrong password!");
+}
+}
+function mycall(){
+var a=parseInt(document.getElementById('number').value);
+var b=parseInt(document.getElementById('numbers').value);
+if(pass==="raja"){
+document.getElementById('result').innerHTML=(a-b);
+document.getElementById('results').innerHTML=(name);
+}
+
+else{
+alert("wrong password!");
+}
+}
+function myball(){
+var a=parseInt(document.getElementById('number').value);
+var b=parseInt(document.getElementById('numbers').value);
+if(pass==="raja"){
+document.getElementById('result').innerHTML=(a+b);
+document.getElementById('results').innerHTML=(name);
+}
+
+else{
+alert("wrong password!");
+}
+}
+function mysall(){
+var a=parseInt(document.getElementById('number').value);
+var b=parseInt(document.getElementById('numbers').value);
+if(pass==="raja"){
+document.getElementById('result').innerHTML=(a/b);
+document.getElementById('results').innerHTML=(name);
+}
+
+else{
+alert("wrong password!");
+}
+}
+</script>
+<label>First-Number:-</label> <input type="number" value="" id="number"/><br/>
+<label>Second-Number:-</label> <input type="number" value="" id="numbers"/><br/>
+<input type="submit" value="multiply" onclick="myfun()"/>
+<input type="submit" value="subtract" onclick="mycall()"/>
+<input type="submit" value="add" onclick="myball()"/>
+<input type="submit" value="divide" onclick="mysall()"/><br/>
+<b>The result is :</b>
+<span id="result"></span><br/>
+<p>Thank you&nbsp;<span id="results"></span></p>
+</body>
+</html>
