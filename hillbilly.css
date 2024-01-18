@@ -1,0 +1,71 @@
+.ms-formtable, input[type="button"][value="Save"],
+input[type="button"][value="Cancel"] {
+    display: none;
+}
+
+.formFieldTitle {
+    font-size: 1.5em;
+    font-family: "EYINTERSTATE-LIGHT" !important;
+    color: black;
+    margin-bottom: 0.4em;
+    font-style: italic;
+    opacity: 0.8;
+}
+span#category tr {
+    width: auto;
+    float: left;
+    margin-right: 2%;
+}
+span#category tr * {
+    font-size: 1.1em;
+    font-family: "EYINTERSTATE-LIGHT" !important;
+    font-weight: 500;
+    color: black;
+    opacity: 0.9;
+    background-color: transparent;
+    /* margin-left: 3px; */
+}
+span#category tr input[type="checkbox"] {
+    margin-right: 9px;
+    margin-top: 0px;
+}
+.commonInputTypeForm input {
+    height: 2.5em !important;
+    background-color: transparent !important;
+    color: black !important;
+    opacity: 0.9;
+    border: 1px solid #c4c5c8 !important;
+}
+.commonInputTypeForm select {
+    background-color: transparent !important;
+    color: black !important;
+    border: 1px solid #c4c5c8 !important;
+    height: 3.2em;
+}
+.commonInputTypeForm select * {
+    background-color: white !important;
+    color: black !important;
+}
+.errorMsg {
+    color: red;
+    font-size: 1.2em;
+    display: none;
+}
+.submitBtnForm {
+    background-color: rgba(254, 229, 0, 1);
+    border-radius: 20%;
+}
+.customBtn {
+    width: auto;
+    float: left;
+    padding: 10px 23px;
+    font-size: 1.3em;
+    margin-right: 3%;
+    border-radius: 100px;
+    cursor: pointer;
+}
+div#hillbillyform input[type="text"] {
+    height: 2.5em;
+    font-size: 1.3em;
+    border: 1px solid rgba(0, 0, 0, 0.4);
+}
