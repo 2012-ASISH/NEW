@@ -1,0 +1,74 @@
+List 
+__________________ :
+Make sure that your data set doesnot have empty rows or coloumn , otherwise it will behave as if they are two different entities.
+
+For sorting of a specific data entity  > 1. select any data from that particular column > 2. go to data in the nav bar > select single sort , there as well you can find the multi level sorting option there it self.
+
+For sorting the data related to month names  , we cannot use the simple sorting option , we need to use the multi sort option and then the custom list for sorting these kind of data.
+
+For Filtering of a specific data entity  > 1. select any data from that particular column > 2. go to data in the nav bar > go to the big filter funnel .
+
+While conducting the sub-total > 1st sort the data > 2nd click on any of the data in the data set  > 3rd go to data section in the top headers > 4th go to the extreme right to the screen where you can find subtotal option.
+
+Dsum is used when you want the sum of a specific type of data from a database =DSUM(database,field,criteria), check sheet List function.
+
+Dcount will only count numbers , but DcountA will count alphabetical values and all.
+
+Data validation of data ( we can do data validation , along with that we can create our own error message)
+
+we can use delimiter while using IMPORT data to excel.(We can import data from text file to excel , ms access db to excel).
+
+we can export data to a text file , because while transfering text file it doesnot take much time.
+
+EXCEL PIVOT TABLES
+___________________________________ :
+
+Creating a excel pivot table(1. convert the list in table by using format to table , 2. click on any coulumn go to insert tab and select create table) you can keep that 
+
+Grouping Pivot table data
+_______________________________:
+select those datas from the coloumn which you want to group , go to pivot table analyze , group selection.
+
+FORMATTING PIVOT TABLE:
+_______________________________________________
+Right click on the dragged field , then choose the value settings , then choose the particular number format you want.
+
+we can modify table like showing , sum , average etc by value field setting.
+
+working with show value as in pivot table.
+
+By double clicking on the data present inside the column of a pivot table , we can drill down that particular data , this will create a new sheet of history of that particular data in the data source.
+
+Pivot Table Chart:
+_____________________
+
+With the pivot chart the pivot table is connected  if you change the pivot table the changes are also discrete in the pivot chart.
+
+filtering of pivot table , by adding the category of data you want to filter out in the pivot table.
+
+click on the data in the pivot table , then pivot table analyze and then insert slicer.
+
+Power Pivot:
+_________________________
+There can be two scenarios where the two sheet have same related data or both have diffrent data but some column on the first sheet replicates itself in the second sheet.    
+
+For creating a pivot table made up of multiple tables, we first need to create a data model by using the data from different sheets and then by using that data model we need to create a pivot table.
+
+steps: 1. create a table of the data you have 2. add power pivot add in ypur pc if you dont have 3. go to power pivot click on add to data model 4.click on diagram view 5. Create a relationship between the tables 6. Create the pivot based on the data model
+
+Excel Power Pivot KPI :
+______________________________
+
+go to manage , in the power pivot tab , create a kpi but before that choose a calculation to be done.
+
+Freeze the coloumn headers so that you dont have to go up and down to check what the headers are.(check employee records sheet by scrolling up and down)
+
+We can use Group data rather than using hide , by going to data view.
+
+printing with page layout > print titles > sheet
+
+='2013'!B4+'2014'!B4+'2015'!B4 3D FORMULA ......(check summary sheet), or we can do the same thing by that data consolidate method.
+
+
+                                     
+

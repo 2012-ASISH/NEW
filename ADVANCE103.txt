@@ -1,0 +1,174 @@
+Working with excel conditional functions
+___________________________________________ :
+
+1. Working with excel name ranges. first we need to select the range of data , then chnage the name in the name box and then hit enter , this way we collectively give a name to that range of data then we can use that in any function of excel.(refsheet: if function , week 1). Disadvantage is that you will not get the column or the row reference. you can edit the name by going to formula tab and then name manager.
+
+2. IF function:
+go to formula tab and then to logical function select if.
+
+3.Nesting function :
+we can do the nesting using the AND logic function, we can nest AND inside IF.(CHECK IF FUNCTION SHEET)
+
+4.COUNT IF:
+This function basically returns the count of those data which satisfies the provided criteria.
+
+5. SUM IF 
+
+6.IFERROR(VALUE,VALUE_IF_ERROR)
+
+7. VLOOKUP or VERTICAL LOOKUP ,
+reference:Master employee list,vlookup function sheet
+lookup value should always be in the first coloumn of the sheet.
+                                                                                                   short cut for making absolute select and f4.
+=VLOOKUP($B4,'Master Emp List'!$A$1:$I$38,2,FALSE) ($B4 is called as partial absolute).
+
+8. Hlookup or horizontal lookup
+reference:Master inventory list,hlookup function sheet
+
+9.INDEX AND MATCH FUNCTIONS:
+index and match functions are used beacuse the vlookup has some limitation , the value to search needs to be in the first column.
+
+10. Index and Match combined:
+=INDEX('INDEX MATCH Master Emp List'!$D$1:$D$38,MATCH(B4,'INDEX MATCH Master Emp List'!$A$1:$A$38,0)) perfect replacement for vlookup.
+
+11. hlookup combined with match function , check sheet HLOOKUP Function .
+
+12. left , right , mid function , these are text based functions.
+
+13. search function (right to left trimming:=RIGHT($A2,LEN(A2)-SEARCH(" ",$A2)   ;   left to right trimming = =LEFT($A2,SEARCH(" ",$A2))
+
+14.Concatenate function , this concats two or more words into one.
+
+15. Auditing the formula , by tracing the precedent. using FORMULA section.
+
+16. protecting a specific cell in a worksheet , if we hit only protect sheet it will protect the whole sheet , but we want some cells to remain unprotected then we have to unlock those cells , HOME->FONT->PROTECTION AND Uncheck the locked cells.
+
+17. microsoft excel goal seek tools: DATA TAB-> what if analysis -> this function helps us to reach a goal and changed the cells related to the particular cell upon which the seek goal has been used.
+
+18. solver tool (which is there for free but you will need to activate it , by bringing in the solver add in ) , solver tool can take multiple cells as constraint while solving , which gives it a advantage upon goal seek tool.
+
+19. what if analysis , datatable 
+
+20. Creating Scenarios in excel , with the help of scenario manager we can manage different scenarios in a single worksheet.(Data -> whatifanalysis -> scenario manager).
+
+21. Learning Macros to automate repeatitive works , 
+		1.Activating developers tab in the excel.(Right click on any of the tab above and then enable the developer option.
+		2.Record Macros 
+		3.creating button to run macros
+22. Project 1 : Inserting and formatting text
+
+23. you can use shapes predefined in the excel to behave as button for a particular marco , the benefit is you can fill the background of the shape with any color that you want.
+
+24. You can add your macros in the quickacess tool bar.
+
+
+25. how to load data to query editor and make change as per your wish.
+
+___________________________________________________________POWER QUERY EDITOR______________________________________________________________________________
+26. 	1.Import mode data storage uses the power bi's own memory.
+	2.Another type of data storage mode is called as directquery , which is used when the dataset is too large and frequently changing.(Tables are 		directly connected to the source).
+	3.Composite mode (dual) here the data is a mixture of both import mode storage and direct query .
+	4. Connects to pre published power bi data set , in power bi services or power analysis service.
+
+27.You can connect to a sql database , go to get data and then more options.give your server name and data base name and your credential , then you are good to go.
+
+28. We also can extract data from the web , for that you need a url for that points to the data source .
+	
+29. Data Profiling tools such as coloumn quality(valid , error , empty) , coloumn distribution and column profile that allows you to explore the quality , composition and distribution of data before loading it into the BI front-end.(all these options are located in the view menu of the power query editor).
+
+the coloumn profiling is done for first 1000 rows , so at the buttom of the screen left you change that value to entire rows.
+
+we can analyze the errors by , hover > ... > keep error.
+
+30.Text Tools: 1. Split a text coloumn based on a delimiter , specific character  2.Format a particular text 3.extract character from text.
+
+Important ( You can access many tools from both the transform and add coloumn menu , the difference is that if you want add a new coloumn or overwrite an existing one ).
+
+31. Numerical tools ( found in transform tab and add coloumn tab) : 1. Statistic ( it is useful to calculate basic stats for the selected coloumn like sum , mim max , average etc.)
+
+32. date and time tool:
+
+function it has date only(it remove the time component and leaves behind date only) , age(it gives the difference between the current date and the date in each row ) , earliest / latest (it evaluates the earliest and the latest date from a column), year / month / quater / week / day(it helps to extract individual component from a date field).
+
+PRO TIP : LOAD UP A TABLE CONATAINING SINGLE DATE COLUMN AND USE DATE TOOLS TO BUILD OUT AN ENTIRE CALENDER TABLE.
+start of the week, here you can determine the start of the week (1=monday , 2= tuesday and so on or you can write Day.Monday ).
+
+CHANGE TYPE WITH LOACALE : it helps in clearing out all the error specific to location . for accessing it left click on the data type icon on the left side of the column header , towards the down you can find it.
+
+PRO TIP : Go For rolling calendar ( choose a blank query > inside it write =#date(yyyy-mm-dd) write staring date of the current year) , then click on the formula icon , inside it[=List.Dates(
+Source,
+Number.From(DateTime.LocalNow())-Number.From(Source),
+#duration(1,0,0,0)
+)
+]
+ then finally convert it into a table.
+
+33. Index columns(found in add column): it contains a list of sequential values that can be used to identify each unique row in a table.
+
+Conditional columns (found in add column): it allows you to define new fields based on logical rules and condition. 
+
+34. Grouping and aggregating : Group By(found in transform tab) allows you to aggregate at a different level or grain (i.e. group daily records into monthly). here you can group a specific data by choosing a specific coulumn to group.
+
+35. Pivoting and unpivoting(found in transform tab): Pivot means converting rows into column and unpivot mean column into rows.(Transpose works in a similar manner but doesnt recognize unique values.)
+
+36. Merging Queries: You can find merge queries in the home tab of the query editor,it allows you join two tables with respect to a column which is common in both the tables.(just because you can merge table its not necessary that you do so because , its better to make relationships between the table).
+
+37. Append Queries: This concatenate two or more table by adding rows.Number of column should be same while appending.
+
+PRO Tip: Appending files from a folder ( New Source > more > Folder) , even if in future you to add a data table , just put that data file inside the folder.
+
+38. Data source setting. (whenever you move a source file from one folder to any other place or rename it , power bi gives u a data source error.)
+
+39. Data Source parameter / Setting parameter
+
+40. Refreshing Queries , we can also customize which queries are not to be refreshed .
+
+41. you can import a fully built data model in excel into power bi 
+
+________________________________________________________________CREATING DATA MODEL______________________________________________
+1. Data Modeling 101 : when two or more table share relationship between them through an common field (product key).(created matrix visualization its just like pivot table in excel)
+
+2. Data Normalization : It is the process of organizing tables and columns into relational database to reduce redundancy(duplicacy) and preserve data integrity.(or it means that one table should serve one distinct and specific purpose).  
+ex-Model that arent normalized contains duplicate data , so all the product specific fields could be stored in a separate table containing a unique record for each product id.
+
+3. Data models generally contain two types of table : FACT (data) tables , and DIMENSION (lookup) tables.
+.fact tables contain numerical values or metrics udes for summarization (sales , order , transaction , pageviews , etc)
+.Dimension tables contain descriptive attributes used for filtering or grouping.
+
+4.Primary and Foriegn keys: foriegn keys(fact table) contain multiple instances of each value and relate to primary keys(dimension table) in dimension table.
+
+5. Merging tables consume more memory , so avoid it.
+
+6. Creating a relationship by dragging foriegn to primary key.
+
+7. Managing/Editing relationships
+
+8. Star and Snowflake Schemas.
+
+9. There can only be only one active relationship between two tables , you have to deactivate one to activate other.
+
+10. What is one to one , many to many , one to many ?(Relationship Cardianality)
+
+11. Fact table should connect through shared dimensional table , not directly to each other.
+
+12. Filter Context and flow: The direction of arrow shows the filter context , means suppose we have two fact table connected to a dimension table then it means the primary key holding dimensional table , is the only way to filter both fact table.(pro tip : through the direction of arrow we know though which key we need to filter).
+
+13.BI-Direction filters .(Dont Use Bi - directional filter unless its very necessary).
+
+14.Hiding fields from report view , for preventing users from choosing invalid fields.
+
+15. Data format and catergory in data view.
+
+16. creating data hierarchy.for eg: Country > state > region.
+
+DAX
+																				----------------------------------------------------------------------
+1.There are 2 ways to use DAX 1. Calculated Columns 2. Measures
+
+2. M code is used with the query editor where as DAX is used with front end and only applicable to those table which are part of the data model.
+
+3. Calculated columns are used to filter out or to group the data rather than aggregating values. And calculated columns are always applied on the entire table or column. ex: Quantity Type = If('sales data'[order quantity] > 1 , "single" , "multiple")
+4. Implicit measures are created when we drag a tables field into the visual value section.
+5. Creating a dedicated table for measures , ex: Measure table (DAX) = {""} (it creates a table with single value).
+6.Explicit Measure are created once , but can be referenced anywhere in the visuals.
+
