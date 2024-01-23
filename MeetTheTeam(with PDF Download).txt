@@ -1,0 +1,947 @@
+import * as React from 'react';
+import { IMeetTheTeamProps } from './IMeetTheTeamProps';
+import { IALLItems, ISPService } from '../../../../services/ISPService';
+import SPService from '../../../../services/SPService';
+import html2canvas from 'html2canvas';
+import { jsPDF } from 'jspdf';
+import {useEffect, useRef} from 'react';
+import axios from 'axios'
+import fileDownload from 'js-file-download'
+import { saveAs } from "file-saver";
+import { AiFillFilePdf } from "react-icons/ai";
+
+
+// const printRef = React.useRef();
+
+//   const handleDownloadPdf = async () => {
+//     const element = printRef.current;
+//     const canvas = await html2canvas(element);
+//     const data = canvas.toDataURL('image/png');
+
+//     const pdf = new jsPDF();
+//     const imgProperties = pdf.getImageProperties(data);
+//     const pdfWidth = pdf.internal.pageSize.getWidth();
+//     const pdfHeight =
+//       (imgProperties.height * pdfWidth) / imgProperties.width;
+
+//     pdf.addImage(data, 'PNG', 0, 0, pdfWidth, pdfHeight);
+//     pdf.save('print.pdf');
+//   }
+
+
+export interface IMeetTheTeamStates {
+    SectionCount: number
+}
+
+//const printRef = React.useRef().current;
+
+export default class MeetTheTeam extends React.Component<IMeetTheTeamProps, IMeetTheTeamStates> {
+    private ServiceInstance: ISPService;
+    private otherWeb: string;
+    //private printRef = useRef().current;
+    //private printRef = useRef();
+
+    constructor(props) {
+        super(props);
+        //this.handleSubmitQuestionHotTopicsClickAction=this.handleSubmitQuestionHotTopicsClickAction.bind(this);
+        this.ServiceInstance = new SPService(this.props.spcontext);
+        this.otherWeb = this.props.spcontext.pageContext.legacyPageContext.webAbsoluteUrl;
+
+        this.state = {
+            SectionCount: 1,
+        }
+        
+    }
+
+    /*async handleSubmitQuestionHotTopicsClickAction()
+    {
+     alert("Hi!!!");
+   
+     var element = printRef;
+     var canvas = await html2canvas(element);
+     var data = canvas.toDataURL('image/png');
+
+     var pdf = new jsPDF();
+     var imgProperties = pdf.getImageProperties(data);
+     var pdfWidth = pdf.internal.pageSize.getWidth();
+     var pdfHeight =
+       (imgProperties.height * pdfWidth) / imgProperties.width;
+
+     pdf.addImage(data, 'PNG', 0, 0, pdfWidth, pdfHeight);
+     pdf.save('print.pdf');
+    }*/
+
+    public plusSlides(value) {
+        this.setState({
+            SectionCount: value
+        });
+    }
+    
+
+    render() {
+        const { SectionCount } = this.state;
+        return (
+            <div id="mypdf" style={{backgroundColor: "#333333"}}>
+            <div>
+                {SectionCount == 1 ?
+                    <div className="fades">
+                        <div className="title" style={{marginTop: "0rem"}}>
+                        <AiFillFilePdf onClick={() => {this.handleDownload()}} style={{color: "yellow", marginTop:"0rem", marginLeft: "68rem"}}/>
+                            <h1 className="headertext" style={{marginTop: "-2.3rem"}}>Meet the Team
+                            </h1>
+                            <div className="container">
+                                <div className="row">
+                                    <div className="col-1">
+                                        <h1 className="tip"></h1>
+                                    </div>
+                                    <div style={{paddingLeft: "7%"}} className="col-11">
+                                        <p className="headersubtext">
+                                            We have created and modified existing structures and KPIs to
+                                            improve market growth along with capability growth
+                                        </p>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div className="container" style={{paddingTop: "0px"}}>
+                            <div className="row">
+                                <div className="col-6">
+                                    <div className="col-9">
+                                        <p className="titletext end">Regions-FSO</p>
+                                    </div>
+                                    <div className="col-9">
+                                        <p className="titletext end" style={{ marginTop: "1rem" }}>FS Sector team</p>
+                                    </div>
+                                    <div className="row">
+                                        <div className="col-10" style={{ marginTop: "-1rem" }}>
+                                            <p className="titletext end">Sector Leadership (BCM, WAM, INS)</p>
+                                        </div>
+                                        <div className="col-2" style={{ marginTop: "-1rem" }}>
+                                            <p className="titletext number start" style={{ marginTop: "-1.6rem" }}>
+                                                3
+                                            </p>
+                                        </div>
+                                    </div>
+                                    <div className="row" style={{ marginTop: "-1rem", marginLeft: "10rem" }}>
+                                        <div className="col-2 end number" style={{ marginTop: "-0.6rem" }}>4</div>
+                                        <div className="col-1 titletext" style={{ marginLeft: "1.5rem" }}>
+                                            Deal Solutioning
+                                        </div>
+                                        <div className="col-2 titletext" style={{ marginLeft: "5rem" }}>
+                                            Account Integration
+                                        </div>
+                                        <div className="col-2 titletext start" style={{ marginLeft: "2rem" }}>
+                                            Integrated offerings
+                                        </div>
+                                    </div>
+                                    <div className="row">
+                                        <div className="col-7"></div>
+                                        <div className="col-2 end text" style={{ width: "auto", padding: "0.5rem" }}>Poorinima v</div>
+                                        <div
+                                            className="col-1 start text"
+                                            style={{ marginLeft: "0.5rem", padding: "0.5rem" }}>
+                                            Rohit K
+                                        </div>
+                                        <div
+                                            className="col-1 center text"
+                                            style={{ marginLeft: "0.5rem", padding: "0.5rem 0 0.5rem 0.5rem" }}
+                                        >
+                                            Dhanu L
+                                        </div>
+                                    </div>
+                                    <div className="row">
+                                        <div className="col-1 number center" style={{ marginTop: "4.5rem" }}>1</div>
+
+                                        <div className="col-1 titletext center verticalallign" >
+                                            Competencies
+
+                                        </div>
+
+                                        <p className="arrowline"><i className="arrow down"></i><i className="arrow up"></i></p>
+
+                                        <div className="col-3 name">
+                                            <p className="nametext">Kumar Singaraju</p>
+                                            <p className="nametext">Vijay Yellapragada</p>
+                                            <p className="nametext">Aravind P</p>
+                                            <p className="nametext">Manish, Sachin, Madhu</p>
+                                            <p className="nametext">Jaidip Menon</p>
+                                            <p className="nametext">Srikrishna Srivatsa</p>
+                                            <p className="nametext">Hemalatha S</p>
+                                            <p className="nametext">Lince Lawrence</p>
+                                            <p className="nametext">Rahul Shetty</p>
+                                            <p className="nametext">Kunal Mehta</p>
+                                            <p className="nametext">Nilesh Gada</p>
+                                            <p className="nametext">Sunil Gaba</p>
+                                        </div>
+                                        <div className="col-3 titletext">
+                                            <p className="nametext">DET</p>
+                                            <p className="nametext">DnA</p>
+                                            <p className="nametext">Cloud</p>
+                                            <p className="nametext">Core platforms</p>
+                                            <p className="nametext">NexGen and alliance</p>
+                                            <p className="nametext">ASMS</p>
+                                            <p className="nametext">Quality engineering</p>
+                                            <p className="nametext">Cyber</p>
+                                            <p className="nametext">TT</p>
+                                            <p className="nametext">Fincrime (sol)</p>
+                                            <p className="nametext">EY comply (sol)</p>
+                                            <p className="nametext">Internal audit (sol)</p>
+                                        </div>
+                                        <div
+                                            className="col-1 titletext center verticalallign"
+                                            style={{ marginLeft: "-2.5rem", fontSize: "12px" }}>
+                                            BCM Sector team
+                                        </div>
+                                        <div className="col-1 number center" style={{ marginTop: "4.5rem" }}>2</div>
+                                        <div
+                                            className="col-1 titletext center verticalallign"
+                                            style={{ marginLeft: "-1rem", fontSize: "12px" }}>
+                                            WAM Sector team
+                                        </div>
+                                        <div
+                                            className="col-1 titletext center verticalallign"
+                                            style={{ paddingTop: "2.5rem", marginLeft: "1.5rem" }}>
+                                            <p >
+                                                Sector GTM and Delivery <br /><br />
+                                                INS Sector team
+                                            </p>
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <div className="col-6" style={{ padding: "3.5rem 0 0 4rem" }}>
+                                    <div className="row">
+                                        <div className="col-2 number end">
+                                            <p>1</p>
+                                        </div>
+                                        <div className="col-7 subtext">
+                                            Senior level dedicated leadership for sector and competencies
+                                        </div>
+                                    </div>
+                                    <div className="row">
+                                        <div className="col-2 number end">
+                                            <p>2</p>
+                                        </div>
+                                        <div className="col-7 subtext">
+                                            Dedicated sector and account teams comprised of BC / TC SMR’s
+                                            focusing on account growth and delivery
+                                        </div>
+                                    </div>
+                                    <div className="row">
+                                        <div className="col-2 number end">
+                                            <p>3</p>
+                                        </div>
+                                        <div className="col-7 subtext">
+                                            Joint development of market centric integrated offerings being
+                                            planned
+                                        </div>
+                                    </div>
+                                    <div className="row">
+                                        <div className="col-2 number end">
+                                            <p>4</p>
+                                        </div>
+                                        <div className="col-7 subtext">
+                                            Pursuit response and Solution Architect teams are established
+                                        </div>
+                                    </div>
+                                    <div className="row">
+                                        <div className="col-2 number end">
+                                            <p>5</p>
+                                        </div>
+                                        <div className="col-7 subtext">
+                                            Dedicated focus on Nexus and Accelerator ecosystem
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div className="row" style={{ marginTop: "1rem" }}>
+                                <div className="col-4 number end" style={{ marginTop: "-4rem" }}>5</div>
+                                <div className="col-6 start titletext" style={{ marginTop: "-3rem" }}>
+                                    EY Nexus FSO <br />
+                                    Asset and Accelerators
+                                </div>
+                            </div>
+                            <a onClick={this.plusSlides.bind(this, 2)} className="next" >
+                                <img src="https://sites.ey.com/sites/FinancialServicesGDSPlaybook/SiteAssets/HomePageDesignAssets/MeetTheTeamAssets/Images/down-arrow.svg" alt="arrow" />
+                            </a>
+                        </div>
+                    </div > : ""}
+                {SectionCount == 2 ?
+                    <div>
+                        <img src="https://sites.ey.com/sites/FinancialServicesGDSPlaybook/SiteAssets/HomePageDesignAssets/MeetTheTeamPeopleAssets/Images/bg-img.png" alt="img" className="bg-image" />
+                        <div className="mySlides fades" style={{ display: "block" }}>
+                            <div className="wrapper m-0 p-0">
+                                <div className="overlay"></div>
+
+                                <div className="container fades" style={{ paddingTop: "0px" }}>
+                                    <h1 className="pageheader" style={{ paddingTop: "0px" }}>Meet the Team</h1>
+
+                                    <div className="container" style={{ paddingTop: "0px" }}>
+                                        <div className="row">
+                                            <div className="col-6">
+                                                <div className="row">
+                                                    <div className="col-1">
+                                                        <h1 style={{ fontSize: "12px", color: "white" }}>Sector</h1>
+                                                    </div>
+                                                    <div className="col-11">
+                                                        <h1 className="line"></h1>
+                                                    </div>
+                                                </div>
+
+                                                <div className="sector">
+                                                    <img src="https://sites.ey.com/sites/FinancialServicesGDSPlaybook/SiteAssets/HomePageDesignAssets/MeetTheTeamPeopleAssets/Images/Picture31.png" alt="" className="sectorimage" />
+                                                    <div className="row" style={{ position: "relative" }}>
+                                                        <div className="col-4">
+                                                            <div className="row">
+                                                                <div className="col-4">
+                                                                    <img
+                                                                        src="https://sites.ey.com/sites/FinancialServicesGDSPlaybook/SiteAssets/HomePageDesignAssets/MeetTheTeamPeopleAssets/Images/Poornima.png"
+                                                                        className="rounded-circle avatar"
+                                                                        alt="Avatar"
+                                                                    />
+                                                                </div>
+                                                                <div className="col-8">
+                                                                    <div className="profileheader">Poornima Vasdev</div>
+                                                                    <p className="profilesubheader">Banking and Capital Markets</p>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                        <div className="col-4">
+                                                            <div className="row">
+                                                                <div className="col-4">
+                                                                    <img
+                                                                        src="https://sites.ey.com/sites/FinancialServicesGDSPlaybook/SiteAssets/HomePageDesignAssets/MeetTheTeamPeopleAssets/Images/Rohit.png"
+                                                                        className="rounded-circle avatar"
+                                                                        alt="Avatar"
+                                                                    />
+                                                                </div>
+                                                                <div className="col-8">
+                                                                    <div className="profileheader">Rohit Kumar</div>
+                                                                    <p className="profilesubheader">Wealth and Asset Management</p>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                        <div className="col-4">
+                                                            <div className="row">
+                                                                <div className="col-4">
+                                                                    <img
+                                                                        src="https://sites.ey.com/sites/FinancialServicesGDSPlaybook/SiteAssets/HomePageDesignAssets/MeetTheTeamPeopleAssets/Images/Dhanu.png"
+                                                                        className="rounded-circle avatar"
+                                                                        alt="Avatar"
+                                                                    />
+                                                                </div>
+                                                                <div className="col-8">
+                                                                    <div className="profileheader">Dhanu Lingareddy </div>
+                                                                    <span className="profilesubheader">Insurance </span>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                <div className="row">
+                                                    <div className="col-3">
+                                                        <h1 style={{ fontSize: "12px", color: "white" }}>
+                                                            Business Consulting
+                                                        </h1>
+                                                    </div>
+                                                    <div className="col-9">
+                                                        <h1 className="line" style={{ marginLeft: "-1rem" }}></h1>
+                                                    </div>
+                                                </div>
+                                                <div className="businessconsulting">
+                                                    <img
+                                                        src="https://sites.ey.com/sites/FinancialServicesGDSPlaybook/SiteAssets/HomePageDesignAssets/MeetTheTeamPeopleAssets/Images/Businessbackground.png"
+                                                        alt=""
+                                                        className="businessimage"
+                                                    />
+                                                    <div className="row">
+                                                        <div className="col-4">
+                                                            <div className="row">
+                                                                <div className="col-4">
+                                                                    <img
+                                                                        src="https://sites.ey.com/sites/FinancialServicesGDSPlaybook/SiteAssets/HomePageDesignAssets/MeetTheTeamPeopleAssets/Images/Mahboob.png"
+                                                                        className="rounded-circle avatar"
+                                                                        alt="Avatar"
+                                                                    />
+                                                                </div>
+                                                                <div className="col-8">
+                                                                    <div className="profileheader">Mahboob Shariff </div>
+                                                                    <span className="profilesubheader"
+                                                                    >Compliance & SFT</span
+                                                                    >
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                        <div className="col-4">
+                                                            <div className="row">
+                                                                <div className="col-4">
+                                                                    <img
+                                                                        src="https://sites.ey.com/sites/FinancialServicesGDSPlaybook/SiteAssets/HomePageDesignAssets/MeetTheTeamPeopleAssets/Images/Mordwaj.png"
+                                                                        className="rounded-circle avatar"
+                                                                        alt="Avatar"
+                                                                    />
+                                                                </div>
+                                                                <div className="col-8">
+                                                                    <div className="profileheader">Mordhwaj Pal </div>
+                                                                    <span className="profilesubheader"
+                                                                    >BT Finance & SCO
+                                                                    </span>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                        <div className="col-4">
+                                                            <div className="row">
+                                                                <div className="col-4">
+                                                                    <img
+                                                                        src="https://sites.ey.com/sites/FinancialServicesGDSPlaybook/SiteAssets/HomePageDesignAssets/MeetTheTeamPeopleAssets/Images//Ansuman.png"
+                                                                        className="rounded-circle avatar"
+                                                                        alt="Avatar"
+                                                                    />
+                                                                </div>
+                                                                <div className="col-8">
+                                                                    <div className="profileheader">Anshuman Anand </div>
+                                                                    <span className="profilesubheader">Actuarial </span>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                        <div className="col-4" style={{ marginTop: "1rem" }}>
+                                                            <div className="row">
+                                                                <div className="col-4">
+                                                                    <img
+                                                                        src="https://sites.ey.com/sites/FinancialServicesGDSPlaybook/SiteAssets/HomePageDesignAssets/MeetTheTeamPeopleAssets/Images/sunil.png"
+                                                                        className="rounded-circle avatar"
+                                                                        alt="Avatar"
+                                                                    />
+                                                                </div>
+                                                                <div className="col-8">
+                                                                    <div className="profileheader">Sunil Gaba </div>
+                                                                    <span className="profilesubheader"
+                                                                    >Enterprise & Tech Risk
+                                                                    </span>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                        <div className="col-4" style={{ marginTop: "1rem" }}>
+                                                            <div className="row">
+                                                                <div className="col-4">
+                                                                    <img
+                                                                        src="https://sites.ey.com/sites/FinancialServicesGDSPlaybook/SiteAssets/HomePageDesignAssets/MeetTheTeamPeopleAssets/Images/Nilesh.png"
+                                                                        className="rounded-circle avatar"
+                                                                        alt="Avatar"
+                                                                    />
+                                                                </div>
+                                                                <div className="col-8">
+                                                                    <div className="profileheader">Nilesh Gada</div>
+                                                                    <span className="profilesubheader">EY Comply </span>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                <div className="row">
+                                                    <div className="col-3">
+                                                        <h1 style={{ fontSize: "12px", color: "white" }}>
+                                                            Regional Solutions
+                                                        </h1>
+                                                    </div>
+                                                    <div className="col-9">
+                                                        <h1 className="line" style={{ marginLeft: "-1rem" }}></h1>
+                                                    </div>
+                                                </div>
+                                                <div className="region">
+                                                    <img
+                                                        src="https://sites.ey.com/sites/FinancialServicesGDSPlaybook/SiteAssets/HomePageDesignAssets/MeetTheTeamPeopleAssets/Images/RegionalBackground.png"
+                                                        className="regionalimage"
+                                                    />
+                                                    <div className="row">
+                                                        <div className="col-4">
+                                                            <div className="row">
+                                                                <div className="col-4">
+                                                                    <img
+                                                                        src="https://sites.ey.com/sites/FinancialServicesGDSPlaybook/SiteAssets/HomePageDesignAssets/MeetTheTeamPeopleAssets/Images/Ankur.png"
+                                                                        className="rounded-circle avatar"
+                                                                        alt="Avatar"
+                                                                    />
+                                                                </div>
+                                                                <div className="col-8">
+                                                                    <div className="profileheader">Ankur Chadha</div>
+                                                                    <span className="profilesubheader">APAC </span>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                        <div className="col-4">
+                                                            <div className="row">
+                                                                <div className="col-4">
+                                                                    <img
+                                                                        src="https://sites.ey.com/sites/FinancialServicesGDSPlaybook/SiteAssets/HomePageDesignAssets/MeetTheTeamPeopleAssets/Images/Prakash.png"
+                                                                        className="rounded-circle avatar"
+                                                                        alt="Avatar"
+                                                                    />
+                                                                </div>
+                                                                <div className="col-8">
+                                                                    <div className="profileheader">Prakash V Thakkar</div>
+                                                                    <span className="profilesubheader">EMEIA </span>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                <div className="row">
+                                                    <div className="col-2">
+                                                        <h1 style={{ fontSize: "12px", color: "white" }}>Location</h1>
+                                                    </div>
+                                                    <div className="col-10">
+                                                        <h1 className="line" style={{ marginLeft: "-1rem" }}></h1>
+                                                    </div>
+                                                </div>
+                                                <div className="location">
+                                                    <img
+                                                        src="https://sites.ey.com/sites/FinancialServicesGDSPlaybook/SiteAssets/HomePageDesignAssets/MeetTheTeamPeopleAssets/Images/LocationBackground.png"
+                                                        className="locationimage"
+                                                    />
+                                                    <div className="row">
+                                                        <div className="col-4">
+                                                            <div className="row">
+                                                                <div className="col-4">
+                                                                    <img
+                                                                        src="https://sites.ey.com/sites/FinancialServicesGDSPlaybook/SiteAssets/HomePageDesignAssets/MeetTheTeamPeopleAssets/Images/Raymond.png"
+                                                                        className="rounded-circle avatar"
+                                                                        alt="Avatar"
+                                                                    />
+                                                                </div>
+                                                                <div className="col-8">
+                                                                    <div className="profileheader">Raymond Garret C Go</div>
+                                                                    <span className="profilesubheader">Philippines </span>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                        <div className="col-4">
+                                                            <div className="row">
+                                                                <div className="col-4">
+                                                                    <img
+                                                                        src="https://sites.ey.com/sites/FinancialServicesGDSPlaybook/SiteAssets/HomePageDesignAssets/MeetTheTeamPeopleAssets/Images/Sebastian.png"
+                                                                        className="rounded-circle avatar"
+                                                                        alt="Avatar"
+                                                                    />
+                                                                </div>
+                                                                <div className="col-8">
+                                                                    <div className="profileheader">Sebastian Kulej</div>
+                                                                    <span className="profilesubheader">Poland </span>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                        <div className="col-4">
+                                                            <div className="row">
+                                                                <div className="col-4">
+                                                                    <img
+                                                                        src="https://sites.ey.com/sites/FinancialServicesGDSPlaybook/SiteAssets/HomePageDesignAssets/MeetTheTeamPeopleAssets/Images/Praga.png"
+                                                                        className="rounded-circle avatar"
+                                                                        alt="Avatar"
+                                                                    />
+                                                                </div>
+                                                                <div className="col-8">
+                                                                    <div className="profileheader">Praga T</div>
+                                                                    <span className="profilesubheader">Mexico </span>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+
+                                            <div className="col-1">
+                                                <h1 className="linevertical"></h1>
+                                            </div>
+
+                                            <div className="col-5">
+                                                <div className="row">
+                                                    <div className="col-4">
+                                                        <h1 style={{ fontSize: "12px", color: "white" }}>
+                                                            Technology Consulting
+                                                        </h1>
+                                                    </div>
+                                                    <div className="col-8">
+                                                        <h1 className="line"></h1>
+                                                    </div>
+                                                </div>
+                                                <div className="technology">
+                                                    <img
+                                                        src="https://sites.ey.com/sites/FinancialServicesGDSPlaybook/SiteAssets/HomePageDesignAssets/MeetTheTeamPeopleAssets/Images/TechnologyBackground.png"
+                                                        className="technologyimage"
+                                                    />
+                                                    <div className="row">
+                                                        <div className="col-4">
+                                                            <div className="row">
+                                                                <div className="col-4">
+                                                                    <img
+                                                                        src="https://sites.ey.com/sites/FinancialServicesGDSPlaybook/SiteAssets/HomePageDesignAssets/MeetTheTeamPeopleAssets/Images/Hemalatha.png"
+                                                                        className="rounded-circle avatar"
+                                                                        alt="Avatar"
+                                                                    />
+                                                                </div>
+                                                                <div className="col-8 techcontent">
+                                                                    <div className="profileheader">Hemalatha Sarvesan </div>
+                                                                    <span className="profilesubheader"
+                                                                    >Quality Engineering
+                                                                    </span>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                        <div className="col-4">
+                                                            <div className="row">
+                                                                <div className="col-4">
+                                                                    <img
+                                                                        src="https://sites.ey.com/sites/FinancialServicesGDSPlaybook/SiteAssets/HomePageDesignAssets/MeetTheTeamPeopleAssets/Images/Kumar.png"
+                                                                        className="rounded-circle avatar"
+                                                                        alt="Avatar"
+                                                                    />
+                                                                </div>
+                                                                <div className="col-8">
+                                                                    <div className="profileheader">Kumar Singaraju</div>
+                                                                    <span className="profilesubheader"
+                                                                    >Digital & Emerging Tech
+                                                                    </span>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                        <div className="col-4">
+                                                            <div className="row">
+                                                                <div className="col-4">
+                                                                    <img
+                                                                        src="https://sites.ey.com/sites/FinancialServicesGDSPlaybook/SiteAssets/HomePageDesignAssets/MeetTheTeamPeopleAssets/Images/Bikram.png"
+                                                                        className="rounded-circle avatar"
+                                                                        alt="Avatar"
+                                                                    />
+                                                                </div>
+                                                                <div className="col-8">
+                                                                    <div className="profileheader">Bikram Dasgupta </div>
+                                                                    <span className="profilesubheader"
+                                                                    >HSW & Emerging Tech.
+                                                                    </span>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+
+                                                        <div className="col-4 colheight">
+                                                            <div className="row">
+                                                                <div className="col-4">
+                                                                    <img
+                                                                        src="https://sites.ey.com/sites/FinancialServicesGDSPlaybook/SiteAssets/HomePageDesignAssets/MeetTheTeamPeopleAssets/Images/Thiru.png"
+                                                                        className="rounded-circle avatar"
+                                                                        alt="Avatar"
+                                                                    />
+                                                                </div>
+                                                                <div className="col-8">
+                                                                    <div className="profileheader">Thiru S Vengadam</div>
+                                                                    <span className="profilesubheader"
+                                                                    >Digital & Emerging Tech
+                                                                    </span>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                        <div className="col-4 colheight">
+                                                            <div className="row">
+                                                                <div className="col-4">
+                                                                    <img
+                                                                        src="https://sites.ey.com/sites/FinancialServicesGDSPlaybook/SiteAssets/HomePageDesignAssets/MeetTheTeamPeopleAssets/Images/Gopalakrishna.png"
+                                                                        className="rounded-circle avatar"
+                                                                        alt="Avatar"
+                                                                    />
+                                                                </div>
+                                                                <div className="col-8">
+                                                                    <div className="profileheader">Gopalakrishna B</div>
+                                                                    <span className="profilesubheader"
+                                                                    >Tech Transformation
+                                                                    </span>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                        <div className="col-4 colheight">
+                                                            <div className="row">
+                                                                <div className="col-4">
+                                                                    <img
+                                                                        src="https://sites.ey.com/sites/FinancialServicesGDSPlaybook/SiteAssets/HomePageDesignAssets/MeetTheTeamPeopleAssets/Images/Aravind.png"
+                                                                        className="rounded-circle avatar"
+                                                                        alt="Avatar"
+                                                                    />
+                                                                </div>
+                                                                <div className="col-8">
+                                                                    <div className="profileheader">Arvind P</div>
+                                                                    <span className="profilesubheader">Cloud</span>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                        <div className="col-4 colheight">
+                                                            <div className="row">
+                                                                <div className="col-4">
+                                                                    <img
+                                                                        src="https://sites.ey.com/sites/FinancialServicesGDSPlaybook/SiteAssets/HomePageDesignAssets/MeetTheTeamPeopleAssets/Images/Vijay.png"
+                                                                        className="rounded-circle avatar"
+                                                                        alt="Avatar"
+                                                                    />
+                                                                </div>
+                                                                <div className="col-8">
+                                                                    <div className="profileheader">Vijay Yellapragada</div>
+                                                                    <span className="profilesubheader">DnA GTM, </span>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                        <div className="col-4 colheight">
+                                                            <div className="row">
+                                                                <div className="col-4">
+                                                                    <img
+                                                                        src="https://sites.ey.com/sites/FinancialServicesGDSPlaybook/SiteAssets/HomePageDesignAssets/MeetTheTeamPeopleAssets/Images/Lince.png"
+                                                                        className="rounded-circle avatar"
+                                                                        alt="Avatar"
+                                                                    />
+                                                                </div>
+                                                                <div className="col-8">
+                                                                    <div className="profileheader">Lince Lawrence</div>
+                                                                    <span className="profilesubheader">Cybersecurity </span>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                        <div className="col-4 colheight">
+                                                            <div className="row">
+                                                                <div className="col-4">
+                                                                    <img
+                                                                        src="https://sites.ey.com/sites/FinancialServicesGDSPlaybook/SiteAssets/HomePageDesignAssets/MeetTheTeamPeopleAssets/Images/Vikram.png"
+                                                                        className="rounded-circle avatar"
+                                                                        alt="Avatar"
+                                                                    />
+                                                                </div>
+                                                                <div className="col-8">
+                                                                    <div className="profileheader">Vikram M Raju</div>
+                                                                    <span className="profilesubheader">GTM Solutions </span>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                        <div className="col-4 colheight">
+                                                            <div className="row">
+                                                                <div className="col-4">
+                                                                    <img
+                                                                        src="https://sites.ey.com/sites/FinancialServicesGDSPlaybook/SiteAssets/HomePageDesignAssets/MeetTheTeamPeopleAssets/Images/Srikrishna.png"
+                                                                        className="rounded-circle avatar"
+                                                                        alt="Avatar"
+                                                                    />
+                                                                </div>
+                                                                <div className="col-8">
+                                                                    <div className="profileheader">Srikrishna Srivatsa</div>
+                                                                    <span className="profilesubheader">ASMS</span>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                        <div className="col-4 colheight">
+                                                            <div className="row">
+                                                                <div className="col-4">
+                                                                    <img
+                                                                        src="https://sites.ey.com/sites/FinancialServicesGDSPlaybook/SiteAssets/HomePageDesignAssets/MeetTheTeamPeopleAssets/Images/Chalapathy.png"
+                                                                        className="rounded-circle avatar"
+                                                                        alt="Avatar"
+                                                                    />
+                                                                </div>
+                                                                <div className="col-8">
+                                                                    <div className="profileheader">Chalapathy P</div>
+                                                                    <span className="profilesubheader">FS Cloud </span>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                        <div className="col-4 colheight">
+                                                            <div className="row">
+                                                                <div className="col-4">
+                                                                    <img
+                                                                        src="https://sites.ey.com/sites/FinancialServicesGDSPlaybook/SiteAssets/HomePageDesignAssets/MeetTheTeamPeopleAssets/Images/Manish.png"
+                                                                        className="rounded-circle avatar"
+                                                                        alt="Avatar"
+                                                                    />
+                                                                </div>
+                                                                <div className="col-8">
+                                                                    <div className="profileheader">Manish Burman</div>
+                                                                    <span className="profilesubheader">BCM TSD</span>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                        <div className="col-4 colheight">
+                                                            <div className="row">
+                                                                <div className="col-4">
+                                                                    <img
+                                                                        src="https://sites.ey.com/sites/FinancialServicesGDSPlaybook/SiteAssets/HomePageDesignAssets/MeetTheTeamPeopleAssets/Images/Sachin.png"
+                                                                        className="rounded-circle avatar"
+                                                                        alt="Avatar"
+                                                                    />
+                                                                </div>
+                                                                <div className="col-8">
+                                                                    <div className="profileheader">Sachin Kumar Mengi</div>
+                                                                    <span className="profilesubheader">WAM TSD</span>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                        <div className="col-4 colheight">
+                                                            <div className="row">
+                                                                <div className="col-4">
+                                                                    <img
+                                                                        src="https://sites.ey.com/sites/FinancialServicesGDSPlaybook/SiteAssets/HomePageDesignAssets/MeetTheTeamPeopleAssets/Images/Madhusudan.png"
+                                                                        className="rounded-circle avatar"
+                                                                        alt="Avatar"
+                                                                    />
+                                                                </div>
+                                                                <div className="col-8">
+                                                                    <div className="profileheader">Madhusudana R B</div>
+                                                                    <span className="profilesubheader">INS TSD</span>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div className="row">
+                                            <div className="col-3">
+                                                <div className="row">
+                                                    <div className="col-3">
+                                                        <h1 style={{ fontSize: "12px", color: "white" }}>Alliance</h1>
+                                                    </div>
+                                                    <div className="col-9">
+                                                        <h1 className="line" style={{ marginLeft: "-1rem" }}></h1>
+                                                    </div>
+                                                </div>
+                                                <div className="region">
+                                                    <img src="https://sites.ey.com/sites/FinancialServicesGDSPlaybook/SiteAssets/HomePageDesignAssets/MeetTheTeamPeopleAssets/Images/AllianceBackground.png" className="alliance" />
+                                                    <div className="row">
+                                                        <div className="col-2">
+                                                            <img
+                                                                src="https://sites.ey.com/sites/FinancialServicesGDSPlaybook/SiteAssets/HomePageDesignAssets/MeetTheTeamPeopleAssets/Images/Jaideep.png"
+                                                                className="rounded-circle avatar"
+                                                                alt="Avatar"
+                                                            />
+                                                        </div>
+                                                        <div className="col-10">
+                                                            <div className="profileheader">Jaidip P Menon</div>
+                                                            <span className="profilesubheader">FS Alliance </span>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div className="col-1">
+                                                <div className="lineverticals"></div>
+                                            </div>
+                                            <div className="col-8">
+                                                <div className="row">
+                                                    <div className="col-3">
+                                                        <h1 style={{ fontSize: "12px", color: "white" }}>
+                                                            Business Management
+                                                        </h1>
+                                                    </div>
+                                                    <div className="col-9">
+                                                        <h1 className="line" style={{ marginLeft: "-3rem" }}></h1>
+                                                    </div>
+                                                </div>
+                                                <div className="region">
+                                                    <img
+                                                        src="https://sites.ey.com/sites/FinancialServicesGDSPlaybook/SiteAssets/HomePageDesignAssets/MeetTheTeamPeopleAssets/Images/Managmentbackground.png"
+                                                        className="managmentimage"
+                                                    />
+                                                    <div className="row">
+                                                        <div className="col-3">
+                                                            <div className="row">
+                                                                <div className="col-4">
+                                                                    <img
+                                                                        src="https://sites.ey.com/sites/FinancialServicesGDSPlaybook/SiteAssets/HomePageDesignAssets/MeetTheTeamPeopleAssets/Images/Prasamit.png"
+                                                                        className="rounded-circle avatar"
+                                                                        alt="Avatar"
+                                                                    />
+                                                                </div>
+                                                                <div className="col-8">
+                                                                    <div className="profileheader">Prasamit Kalita</div>
+                                                                    <span className="profilesubheader"
+                                                                    >Financial Services</span
+                                                                    >
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                        <div className="col-3">
+                                                            <div className="row">
+                                                                <div className="col-4">
+                                                                    <img
+                                                                        src="https://sites.ey.com/sites/FinancialServicesGDSPlaybook/SiteAssets/HomePageDesignAssets/MeetTheTeamPeopleAssets/Images/narayana.png"
+                                                                        className="rounded-circle avatar"
+                                                                        alt="Avatar"
+                                                                    />
+                                                                </div>
+                                                                <div className="col-8">
+                                                                    <div className="profileheader">Aravind Narayan S</div>
+                                                                    <span className="profilesubheader"
+                                                                    >Learning & Development</span
+                                                                    >
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                        <div className="col-3">
+                                                            <div className="row">
+                                                                <div className="col-4">
+                                                                    <img
+                                                                        src="https://sites.ey.com/sites/FinancialServicesGDSPlaybook/SiteAssets/HomePageDesignAssets/MeetTheTeamPeopleAssets/Images/Agni.png"
+                                                                        className="rounded-circle avatar"
+                                                                        alt="Avatar"
+                                                                    />
+                                                                </div>
+                                                                <div className="col-8">
+                                                                    <div className="profileheader">Agni Sarkar</div>
+                                                                    <span className="profilesubheader"
+                                                                    >Growth & Bid Management</span
+                                                                    >
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                        <div className="col-3">
+                                                            <div className="row">
+                                                                <div className="col-4">
+                                                                    <img
+                                                                        src="https://sites.ey.com/sites/FinancialServicesGDSPlaybook/SiteAssets/HomePageDesignAssets/MeetTheTeamPeopleAssets/Images/Sendil.png"
+                                                                        className="rounded-circle avatar"
+                                                                        alt="Avatar"
+                                                                    />
+                                                                </div>
+                                                                <div className="col-8">
+                                                                    <div className="profileheader">Sendil C</div>
+                                                                    <span className="profilesubheader"
+                                                                    >Delivery Excellence</span
+                                                                    >
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+
+                                    </div>
+                                    <a className="prev" >
+                                        <img src="https://sites.ey.com/sites/FinancialServicesGDSPlaybook/SiteAssets/HomePageDesignAssets/MeetTheTeamPeopleAssets/Images/down-arrow.svg" onClick={this.plusSlides.bind(this, 1)} alt="arrow" />
+                                    </a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    : ""}
+                <div onClick={this.props.onClickUp} className="arrow_up bounce"></div>
+            </div>
+            </div>
+        )
+    }
+    handleDownload() {
+         const myinput = document.getElementById('mypdf');
+         html2canvas(myinput)  
+           .then((canvas) => {  
+             var imgWidth = 200;  
+             var pageHeight = 290;  
+             var imgHeight = canvas.height * imgWidth / canvas.width;  
+             var heightLeft = imgHeight;  
+             const imgData = canvas.toDataURL('image/png');  
+             const mynewpdf = new jsPDF('p', 'mm', 'a4');  
+             var position = 0;  
+             mynewpdf.addImage(imgData, 'JPEG', 5, position, imgWidth, imgHeight);  
+             mynewpdf.save("mypdf.pdf");  
+           });
+    } 
+}
